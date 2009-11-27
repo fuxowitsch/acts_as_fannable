@@ -44,7 +44,7 @@ module HeurionConsulting
         # Helper method to sort fan by date
         def fans_by_recent
           Fan.find(:all,
-            :conditions => ["fannable_id = ? and fannable_type = ?", id, self.type.name],
+            :conditions => ["fannable_id = ? and fannable_type = ?", id, self.class.name],
             :order => "created_at DESC"
           )
         end
@@ -56,7 +56,7 @@ module HeurionConsulting
         
         def is_fan?(user)
          fan = Fan.find(:all,
-            :conditions => ["user_id = ? and fannable_type = ? and fannable_id = ?",user.id, self.type.name,self.id]
+            :conditions => ["user_id = ? and fannable_type = ? and fannable_id = ?",user.id, self.class.name,self.id]
           )
           fan.size==0 ? false : fan
         end
