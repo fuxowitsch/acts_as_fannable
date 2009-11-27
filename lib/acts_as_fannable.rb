@@ -58,7 +58,7 @@ module HeurionConsulting
          fan = Fan.find(:all,
             :conditions => ["user_id = ? and fannable_type = ? and fannable_id = ?",user.id, self.type.name,self.id]
           )
-          !(fan.nil?)
+          fan.size==0 ? false : fan
         end
         
       end
